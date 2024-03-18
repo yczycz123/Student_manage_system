@@ -41,13 +41,21 @@ public class App {
         int index =find_user_index(list,user);
         if (index==-1) {
             System.out.println("身份证号码或手机号码不匹配，修改失败");return;
-        }else {
+        }
+        while (true) {
             System.out.println("请输入新密码");
             String new_password=sc.next();
-            user.setPassword(new_password);
-            list.set(index,user);
-            System.out.println("密码修改成功，请重新登录");return;
+            System.out.println("请再输入一次新密码");
+            String new_password2=sc.next();
+            if (new_password2.equals(new_password)) {
+                user.setPassword(new_password);
+                list.set(index,user);
+                System.out.println("密码修改成功，请重新登录");return;
+            }else {
+                System.out.println("两次密码输入不一致，请重新输入");
+            }
         }
+
     }
 
     private static int find_user_index(ArrayList<User> list, User user) {
