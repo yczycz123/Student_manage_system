@@ -26,8 +26,42 @@ public class App {
     }
 
     private static void miss_password(ArrayList<User>list) {
-        System.out.println("忘记密码");
+        Scanner sc=new Scanner(System.in);
+        System.out.println("请输入用户名");
+        String username=sc.next();
+        boolean user_flag=contions_username(list,username);
+        if (!user_flag) {
+            System.out.println("用户名不存在，请先注册");return;
+        }
+        System.out.println("请输入手机号码");
+        String phonenumber=sc.next();
+        System.out.println("请输入身份证号码");
+        String idcard=sc.next();
+        User user=new User(username,null,idcard,phonenumber);
+        int index =find_user_index(list,user);
+        if (index==-1) {
+            System.out.println("身份证号码或手机号码不匹配，修改失败");return;
+        }else {
+            System.out.println("请输入新密码");
+            String new_password=sc.next();
+            user.setPassword(new_password);
+            list.set(index,user);
+            System.out.println("密码修改成功，请重新登录");return;
+        }
     }
+
+    private static int find_user_index(ArrayList<User> list, User user) {
+        User data_user;
+        for (int i = 0; i < list.size(); i++) {
+            data_user=list.get(i);
+            if ((data_user.getUserIdcard().equals(user.getUserIdcard()))&&(data_user.getPhonenumber().equals(user.getPhonenumber()))) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    //检查身份证和手机号是否正确
 
     private static void register(ArrayList<User>list) {
         Scanner sc=new Scanner(System.in);
