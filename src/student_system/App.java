@@ -13,17 +13,13 @@ public class App {
             Scanner sc=new Scanner(System.in);
             String choose=sc.next();
             switch (choose){
-                case "1":
-                    login(list);break;
-                case "2":
-                    register(list);break;
-                case "3":
-                    miss_password(list);break;
-                case "4": {
+                case "1"->login(list);
+                case "2"-> register(list);
+                case "3"-> miss_password(list);
+                case "4"->{
                     System.out.println("退出成功");break loop;
                 }
-                default:
-                    System.out.println("没有这个选项");break;
+                default->System.out.println("没有这个选项");
             }
         }
     }
