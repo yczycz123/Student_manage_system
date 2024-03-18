@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-        ArrayList<User> list=new ArrayList<>();
+       ArrayList<User> list=new ArrayList<>();
        loop: while (true) {
             System.out.println("欢迎来到学生管理系统");
             System.out.println("请选择操作1登录 2注册 3忘记密码 4退出");
