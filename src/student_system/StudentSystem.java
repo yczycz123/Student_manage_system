@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentSystem {
-    public static void main(String[] args) {
+    public static void StartStudentSystem() {
         ArrayList<Student> list=new ArrayList<>();
      loop:   while (true) {
             System.out.println("-------------欢迎来到黑马学生管理系统----------------");

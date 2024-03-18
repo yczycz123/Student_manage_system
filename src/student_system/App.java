@@ -255,7 +255,9 @@ public class App {
             User user=new User(username,password,null,null);
             boolean flag=check_userinfo(list, user);
             if (flag){
-                System.out.println("用户名和密码正确，登录成功");return;
+                System.out.println("用户名和密码正确，登录成功");
+                StudentSystem ss=new StudentSystem();
+                ss.StartStudentSystem();
             }else {
                 System.out.println("用户名或密码错误，登录失败");
                 if(i==2){
