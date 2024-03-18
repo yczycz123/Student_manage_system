@@ -188,7 +188,53 @@ public class App {
     }
 
     private static void login(ArrayList<User>list) {
-        System.out.println("登录");
+        Scanner sc=new Scanner(System.in);
+        for (int i = 0; i < 3; i++) {
+            System.out.println("请输入用户名");
+            String username=sc.next();
+            boolean flag1=contions_username(list,username);
+            if (!flag1) {
+                System.out.println("用户名不存在，请先注册");return;
+            }
+            System.out.println("请输入密码");
+            String password=sc.next();
+
+            while (true) {
+                String code=get_code();
+                System.out.println("请输入验证码,当前验证码为"+code);
+                String user_code=sc.next();
+                if (user_code.equalsIgnoreCase(code)){
+                    System.out.println("验证码输入正确");break;
+                }else {
+                    System.out.println("验证码输入错误,请重新输入");
+                }
+            }
+
+            User user=new User(username,password,null,null);
+            boolean flag=check_userinfo(list, user);
+            if (flag){
+                System.out.println("用户名和密码正确，登录成功");return;
+            }else {
+                System.out.println("用户名或密码错误，登录失败");
+                if(i==2){
+                    System.out.println("您输入错误次数过多，当前用户名被锁定");return;
+                }else {
+                    System.out.println("您已经输入错误"+(i+1)+ "次，还剩下"+(2-i)+"次机会");
+                }
+            }
+        }
+
+
+    }
+
+    private static boolean check_userinfo(ArrayList<User>list,User user) {
+        for (int i = 0; i < list.size(); i++) {
+            User grip_user=list.get(i);
+            if ((grip_user.getUsername().equals(user.getUsername()))&&(grip_user.getPassword().equals(user.getPassword()))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static String get_code(){
